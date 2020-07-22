@@ -5,6 +5,7 @@ This repository contains some examples how to use libmosquitto to create MQTT cl
 # Content 
 
 - mqtt_publish.c: A simple MQTT client, who publishes a message under the topic test/t1
+- mqtt_sub.c: A simple MQTT client, who subsribes to a topic and print out a message, everytime it receives a message
 - makefile: to build the examples
 
 # Dependencies and usage
