@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <mosquitto.h>
 
@@ -10,9 +11,23 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 		exit(-1);
 	}
 	mosquitto_subscribe(mosq, NULL, "test/t1", 0);
+	mosquitto_subscribe(mosq, NULL, "test/t2", 0);
+	mosquitto_subscribe(mosq, NULL, "test/t3", 0);
+	mosquitto_subscribe(mosq, NULL, "test/t4", 0);
 }
 
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
+	if(strcmp(msg->topic, "test/t1") == 0 )
+		printf("Topic is test/t1\n");
+	else if(strcmp(msg->topic, "test/t2") == 0 )
+		printf("Topic is test/t2\n");
+	else if(strcmp(msg->topic, "test/t3") == 0 )
+		printf("Topic is test/t3\n");
+	else if(strcmp(msg->topic, "test/t4") == 0 )
+		printf("Topic is test/t4\n");
+	else
+		/* I should never land here ...*/
+		printf("Strange...\n");
 	printf("New message with topic %s: %s\n", msg->topic, (char *) msg->payload);
 }
 

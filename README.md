@@ -16,3 +16,14 @@ To run the script, you need the following packages. Here is the installation com
 sudo apt install gcc mosquitto mosquitto-clients libmosquitto-dev
 ~~~~~
 
+# Modified version
+
+In this branch the subscriber will subnscribe to four topics. Test it with the following bash loop:
+
+~~~~~
+for((i=1;i<5;i++))
+do
+	mosquitto_pub -t test/t$i -m "$i says Hello!"
+done
+~~~~~
+
